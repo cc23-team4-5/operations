@@ -12,8 +12,7 @@ cursor = conn.cursor()
 cursor.execute('''
 		CREATE TABLE users (
 			user_id int,
-			task_ids VARCHAR(100),
-			info_ids VARCHAR(100),
+			questionare_url VARCHAR(100),
             PRIMARY KEY(user_id)
 			)
                ''')

@@ -14,8 +14,8 @@ user_df = pd.DataFrame(user_data)
 for row in user_df.itertuples():
     print(row)
     print('-' * 50)
-    cursor.execute("INSERT INTO users (user_id) VALUES (%s)",
-                    (row.user_id)
+    cursor.execute("INSERT INTO users (user_id, questionare_url) VALUES (%s, %s)",
+                    (row.user_id, row.questionare_url)
             )
 
 conn.commit()
