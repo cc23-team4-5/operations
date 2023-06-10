@@ -22,7 +22,7 @@ variable "container_app_config" {
         min_replicas = 1
         web_app = {
             name = "web-app"
-            image = "ghcr.io/cc23-team4-5/web-app:latest"
+            image = "ghcr.io/cc23-team4-5/web-app:0.0.12"
             cpu = 1
             memory = "2Gi"
         }

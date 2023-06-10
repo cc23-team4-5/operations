@@ -12,42 +12,60 @@ cursor = conn.cursor()
 cursor.execute('''
 		CREATE TABLE users (
 			user_id int,
+            task_id VARCHAR(20),
+            text_id int,
 			questionare_url VARCHAR(100),
+            consent_given int,
             PRIMARY KEY(user_id)
 			)
                ''')
 conn.commit()
 
-# Create Task Desriptions Table
+# # Create Texts table
+# cursor.execute('''
+# 		CREATE TABLE texts (
+#             text_id int,
+# 			original_text textlarge,
+#             PRIMARY KEY(text_id)
+# 			)
+#                ''')
+# conn.commit()
+
+# Create Key-Features Table
 cursor.execute('''
-		CREATE TABLE task_descriptions (
-            task_id int,
+		CREATE TABLE key_features (
+			kf_id int NOT NULL IDENTITY,
+            text_id int,
             user_id int,
-			task_description VARCHAR(800),
-            PRIMARY KEY(task_id)
+			key_features VARCHAR(MAX),
+            PRIMARY KEY(kf_id)
 			)
                ''')
 conn.commit()
 
-# Create Additional Info Table
+# Create Summary Table
 cursor.execute('''
-		CREATE TABLE additional_info (
-			info_id int,
+		CREATE TABLE summaries (
+			summary_id int IDENTITY(1,1),
+            text_id int,
             user_id int,
-			additional_info VARCHAR(800),
-            PRIMARY KEY(info_id)
+            kf_id int,
+            summary VARCHAR(MAX),
+            PRIMARY KEY(summary_id)
 			)
                ''')
 conn.commit()
 
-# Create User Answer Table
+# Create Validation Table
 cursor.execute('''
-		CREATE TABLE user_answers (
-			answer_id int IDENTITY(1,1),
+		CREATE TABLE validations (
+			validation_id int IDENTITY(1,1),
+            text_id int,
+            kf_id int,
+            summary_id int,
             user_id int,
-            task_id int,
-			user_answer VARCHAR(800),
-            PRIMARY KEY(answer_id)
+            validation VARCHAR(MAX),
+            PRIMARY KEY(summary_id)
 			)
                ''')
 conn.commit()
