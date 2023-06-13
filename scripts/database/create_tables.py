@@ -15,6 +15,7 @@ cursor.execute('''
             task_id VARCHAR(20),
             text_id int,
 			questionare_url VARCHAR(100),
+            revoke_consent_code VARCHAR(30),
             consent_given int,
             PRIMARY KEY(user_id)
 			)

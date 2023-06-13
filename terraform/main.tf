@@ -53,7 +53,10 @@ module "web_app" {
   key_vault      = module.keyvault.key_vault
   law            = module.log_analytics_workspace.law
 
-  container_app_config = var.container_app_config
+  container_app_config         = var.container_app_config
+  container_app_extract_config = var.container_app_extract_config
+  container_app_produce_config = var.container_app_produce_config
+  container_app_verify_config  = var.container_app_verify_config
 
   tags = {
     class = "Crowd Computing"
@@ -85,10 +88,10 @@ module "mssql_database" {
   name = "cc23-team4-5"
 
   resource_group = module.resource_group.resource_group
-  
-  key_vault      = module.keyvault.key_vault
-  
-  mssql_server   = module.mssql_server.mssql_server
+
+  key_vault = module.keyvault.key_vault
+
+  mssql_server          = module.mssql_server.mssql_server
   mssql_database_config = var.mssql_database_config
 
   tags = {

@@ -12,32 +12,18 @@ cursor = conn.cursor()
 
 
 # Insert Users into Table
-user_data = pd.read_csv ('<FILEPATH>', delimiter=';')   
+user_data = pd.read_csv ('C:/dev/CC23/operations/scripts/database/users.csv', delimiter=';')   
 user_df = pd.DataFrame(user_data)
 for row in user_df.itertuples():
     print('User: ', row.user_id)
-    cursor.execute("INSERT INTO users (user_id, task_id, text_id, questionare_url) VALUES (%s, %s, %s, %s)",
-                    (row.user_id, row.task_id, row.text_id, row.questionare_url)
+    cursor.execute("INSERT INTO users (user_id, task_id, text_id, questionare_url, revoke_consent_code) VALUES (%s, %s, %s, %s, %s)",
+                    (row.user_id, row.task_id, row.text_id, row.questionare_url, row.revoke_consent_code)
             )
 
 conn.commit()
 
-
-# # Insert Texts into Table
-# path = "<FILEPATH>"
-# task_df = pd.DataFrame(pd.read_csv(path, delimiter=';;'))
-# for row in task_df.itertuples():
-#     print('Text')
-    
-#     cursor.execute("INSERT INTO texts (text_id, original_text) VALUES (%s, %s)",
-#                     (row.text_id, row.original_text)
-#                 )
-
-# conn.commit()
-
-
 # Insert Key Features into Table
-path = "<FILEPATH>"
+path = "C:/dev/CC23/operations/scripts/database/data/key_features.csv"
 task_df = pd.DataFrame(pd.read_csv(path, delimiter=';'))
 for row in task_df.itertuples():
     print('Features: ', row.kf_id)
@@ -50,7 +36,7 @@ conn.commit()
 
 
 # Insert Summaries into Table
-path = "<FILEPATH>"
+path = "C:/dev/CC23/operations/scripts/database/data/summaries.csv"
 info_df = pd.DataFrame(pd.read_csv(path, delimiter=';'))
 for row in info_df.itertuples():
     print('Summary: ', row.summary_id)
