@@ -30,19 +30,22 @@ variable "container_app_config" {
 variable "container_app_extract_config" {
   default = {
     name  = "web-app-extract"
-    image = "ghcr.io/cc23-team4-5/web-app:0.0.14"
+    image = "ghcr.io/cc23-team4-5/web-app:0.0.19"
+    experiment_task_name = "extract"
   }
 }
 variable "container_app_produce_config" {
   default = { 
     name = "web-app-produce"
-    image = "ghcr.io/cc23-team4-5/web-app:0.0.14" 
+    image = "ghcr.io/cc23-team4-5/web-app:0.0.19"
+    experiment_task_name = "produce"
   }
 }
 variable "container_app_verify_config" {
   default = { 
     name = "web-app-verify"
-    image = "ghcr.io/cc23-team4-5/web-app:0.0.14" 
+    image = "ghcr.io/cc23-team4-5/web-app:0.0.19"
+    experiment_task_name = "verify"
   }
 }
 

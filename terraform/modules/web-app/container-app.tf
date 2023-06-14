@@ -1,5 +1,5 @@
 data "azurerm_key_vault_secret" "db_credentials" {
-  name = "Sql-Server-Admin-Credentials"
+  name         = "Sql-Server-Admin-Credentials"
   key_vault_id = var.key_vault.id
 }
 
@@ -20,13 +20,18 @@ resource "azurerm_container_app" "web_app_extract" {
       memory = var.container_app_config.web_app.memory
 
       env {
-        name = "CC23_DB_USERNAME"
+        name  = "CC23_DB_USERNAME"
         value = data.azurerm_key_vault_secret.db_credentials.content_type
       }
 
       env {
-        name = "CC23_DB_PASSWORD"
+        name  = "CC23_DB_PASSWORD"
         value = data.azurerm_key_vault_secret.db_credentials.value
+      }
+
+      env {
+        name  = "EXPERIMENT_TASK_NAME"
+        value = var.container_app_extract_config.experiment_task_name
       }
 
     }
@@ -63,13 +68,18 @@ resource "azurerm_container_app" "web_app_produce" {
       memory = var.container_app_config.web_app.memory
 
       env {
-        name = "CC23_DB_USERNAME"
+        name  = "CC23_DB_USERNAME"
         value = data.azurerm_key_vault_secret.db_credentials.content_type
       }
 
       env {
-        name = "CC23_DB_PASSWORD"
+        name  = "CC23_DB_PASSWORD"
         value = data.azurerm_key_vault_secret.db_credentials.value
+      }
+
+      env {
+        name  = "EXPERIMENT_TASK_NAME"
+        value = var.container_app_produce_config.experiment_task_name
       }
 
     }
@@ -106,13 +116,18 @@ resource "azurerm_container_app" "web_app_verify" {
       memory = var.container_app_config.web_app.memory
 
       env {
-        name = "CC23_DB_USERNAME"
+        name  = "CC23_DB_USERNAME"
         value = data.azurerm_key_vault_secret.db_credentials.content_type
       }
 
       env {
-        name = "CC23_DB_PASSWORD"
+        name  = "CC23_DB_PASSWORD"
         value = data.azurerm_key_vault_secret.db_credentials.value
+      }
+
+      env {
+        name  = "EXPERIMENT_TASK_NAME"
+        value = var.container_app_verify_config.experiment_task_name
       }
 
     }
