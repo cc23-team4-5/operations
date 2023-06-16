@@ -49,6 +49,12 @@ resource "azurerm_container_app" "web_app_extract" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      ingress.custom_domain
+    ]
+  }
+
 }
 
 resource "azurerm_container_app" "web_app_produce" {
@@ -97,6 +103,12 @@ resource "azurerm_container_app" "web_app_produce" {
     }
   }
 
+  lifecycle {
+    ignore_changes = [
+      ingress.custom_domain
+    ]
+  }
+
 }
 
 resource "azurerm_container_app" "web_app_verify" {
@@ -143,6 +155,12 @@ resource "azurerm_container_app" "web_app_verify" {
       latest_revision = true
       percentage      = 100
     }
+  }
+
+  lifecycle {
+    ignore_changes = [
+      ingress.custom_domain
+    ]
   }
 
 }
